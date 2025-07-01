@@ -7,7 +7,7 @@ import Lottie from "react-lottie";
 import dynamic from "next/dynamic";
 
 const BackgroundGradientAnimation = dynamic(
-  () => import("./Gradientbg"),
+  () => import("./Gradientbg").then((mod) => mod.BackgroundGradientAnimation),
   { ssr: false }
 );
 
