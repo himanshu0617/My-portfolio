@@ -67,9 +67,9 @@ export function IconCloud({ iconSlugs }: DynamicCloudProps) {
   const [data, setData] = useState<IconData | null>(null);
   const { theme } = useTheme();
 
-  useEffect(() => {
-    fetchSimpleIcons({ slugs: iconSlugs }).then(setData);
-  }, [iconSlugs]);
+  // useEffect(() => {
+  //   fetchSimpleIcons({ slugs: iconSlugs }).then(setData);
+  // }, [iconSlugs]);
 
   const renderedIcons = useMemo(() => {
     if (!data) return null;
