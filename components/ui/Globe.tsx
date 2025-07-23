@@ -91,12 +91,12 @@ export function Globe({ globeConfig, data }: WorldProps) {
     ...globeConfig,
   };
 
-  // useEffect(() => {
-  //   if (globeRef.current) {
-  //     _buildData();
-  //     _buildMaterial();
-  //   }
-  // }, [globeRef.current]);
+  useEffect(() => {
+    if (globeRef.current) {
+      _buildData();
+      _buildMaterial();
+    }
+  }, [globeRef.current]);
 
   const _buildMaterial = () => {
     if (!globeRef.current) return;
@@ -173,21 +173,21 @@ export function Globe({ globeConfig, data }: WorldProps) {
     setGlobeData(filteredPoints);
   };
 
-  // //useEffect(() => {
-  //   if (globeRef.current && globeData) {
-  //     globeRef.current
-  //       .hexPolygonsData(countries.features)
-  //       .hexPolygonResolution(3)
-  //       .hexPolygonMargin(0.7)
-  //       .showAtmosphere(defaultProps.showAtmosphere)
-  //       .atmosphereColor(defaultProps.atmosphereColor)
-  //       .atmosphereAltitude(defaultProps.atmosphereAltitude)
-  //       .hexPolygonColor(() => {
-  //         return defaultProps.polygonColor;
-  //       });
-  //     startAnimation();
-  //   }
-  // }, [globeData]);
+  useEffect(() => {
+    if (globeRef.current && globeData) {
+      globeRef.current
+        .hexPolygonsData(countries.features)
+        .hexPolygonResolution(3)
+        .hexPolygonMargin(0.7)
+        .showAtmosphere(defaultProps.showAtmosphere)
+        .atmosphereColor(defaultProps.atmosphereColor)
+        .atmosphereAltitude(defaultProps.atmosphereAltitude)
+        .hexPolygonColor(() => {
+          return defaultProps.polygonColor;
+        });
+      startAnimation();
+    }
+  }, [globeData]);
 
   const startAnimation = () => {
     if (!globeRef.current || !globeData) return;
@@ -229,26 +229,26 @@ export function Globe({ globeConfig, data }: WorldProps) {
       );
   };
 
-//   //useEffect(() => {
-//     if (!globeRef.current || !globeData) return;
+  useEffect(() => {
+    if (!globeRef.current || !globeData) return;
 
-//     const interval = setInterval(() => {
-//       if (!globeRef.current || !globeData) return;
-//       numbersOfRings = genRandomNumbers(
-//         0,
-//         data.length,
-//         Math.floor((data.length * 4) / 5)
-//       );
+    const interval = setInterval(() => {
+      if (!globeRef.current || !globeData) return;
+      numbersOfRings = genRandomNumbers(
+        0,
+        data.length,
+        Math.floor((data.length * 4) / 5)
+      );
 
-//       globeRef.current.ringsData(
-//         globeData.filter((_d, i) => numbersOfRings.includes(i))
-//       );
-//     }, 2000);
+      globeRef.current.ringsData(
+        globeData.filter((_d, i) => numbersOfRings.includes(i))
+      );
+    }, 2000);
 
-//     return () => {
-//       clearInterval(interval);
-//     };
-//   }, [globeRef.current, globeData]);
+    return () => {
+      clearInterval(interval);
+    };
+  }, [globeRef.current, globeData]);
 
   return (
     <>
@@ -260,11 +260,11 @@ export function Globe({ globeConfig, data }: WorldProps) {
 export function WebGLRendererConfig() {
   const { gl, size } = useThree();
 
-//  // useEffect(() => {
-//     gl.setPixelRatio(window.devicePixelRatio);
-//     gl.setSize(size.width, size.height);
-//     gl.setClearColor(0xffaaff, 0);
-//   }, []);
+  useEffect(() => {
+    gl.setPixelRatio(window.devicePixelRatio);
+    gl.setSize(size.width, size.height);
+    gl.setClearColor(0xffaaff, 0);
+  }, []);
 
   return null;
 }
