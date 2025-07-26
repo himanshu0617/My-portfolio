@@ -4,14 +4,10 @@ import { IoCopyOutline } from "react-icons/io5";
 
 // Also install this npm i --save-dev @types/react-lottie
 import Lottie from "react-lottie";
-import dynamic from "next/dynamic";
-
-const BackgroundGradientAnimation = dynamic(
-  () => import("./Gradientbg").then((mod) => mod.BackgroundGradientAnimation),
-  { ssr: false }
-);
+import BackgroundGradientAnimation from "@/components/ui/Gradientbg";
 
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 import GridGlobe from "./GridGlobe";
 import animationData from "@/data/confetti.json";
@@ -96,12 +92,14 @@ export const BentoGridItem = ({
       >
         {/* add img divs */}
         <div className={`${id === 6 && "flex justify-center"} h-full`}>
-          <div className="w-full h-full absolute">
             {img && (
-              <img
+              <Image
                 src={img}
-                alt={img}
+                alt={typeof title === "string" ? title : "BentoGrid image"}
+                fill
                 className={cn(imgClassName, "object-cover object-center ")}
+                sizes="(max-width: 768px) 100vw, 50vw"
+                priority
               />
             )}
           </div>
@@ -112,11 +110,13 @@ export const BentoGridItem = ({
           >
             {spareImg && (
               <>
-                <img
+                <Image
                   src={spareImg}
                   alt={spareImg}
-                  //   width={220}
+                  fill
                   className="object-cover object-center w-full h-full"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  priority
                 />
               </>
             )}
@@ -189,7 +189,6 @@ export const BentoGridItem = ({
             )}
           </div>
         </div>
-      </div>
     </>
   );
 };

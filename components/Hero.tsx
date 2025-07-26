@@ -3,6 +3,7 @@ import { FaLocationArrow } from "react-icons/fa6";
 import MagicButton from "./ui/MagicButton";
 import { Spotlight } from "./ui/Spotlight";
 import { TypewriterEffect } from "./ui/TypewriterEffect";
+import Head from "next/head";
 
 const Hero = () => {
   const words = [
@@ -26,7 +27,11 @@ const Hero = () => {
   ];
 
   return (
-    <div id="home" className="pb-20 pt-36">
+    <>
+      <Head>
+        <title>HIMANSHU KARAN</title>
+      </Head>
+      <div id="home" className="pb-20 pt-36">
       <div>
         <Spotlight
           className="-top-40 -left-10 md:-left-32 md:-top-20 h-screen"
@@ -71,6 +76,7 @@ const Hero = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
